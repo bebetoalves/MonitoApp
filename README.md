@@ -1,31 +1,27 @@
-# Adonis fullstack application
+# Como instalar
 
-This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
+ 1. Instale o Node na sua maquina. (https://nodejs.org/en/download/)
+ 
+ 2. Após a instalação do Node, instale o Adonis-CLI (pule este passo se já estiver instalado).
+		
 
-1. Bodyparser
-2. Session
-3. Authentication
-4. Web security middleware
-5. CORS
-6. Edge template engine
-7. Lucid ORM
-8. Migrations and seeds
+    npm i -g @adonisjs/cli
 
-## Setup
+ 3. Clone este repositório e instale as dependências do node:
 
-Use the adonis command to install the blueprint
+    npm install
 
-```bash
-adonis new yardstick
-```
-
-or manually clone the repo and then run `npm install`.
+ 4. Gere o arquivo de configuração do Adonis:
 
 
-### Migrations
+    cp .env.example .env
 
-Run the following command to run startup migrations.
+ 5. Gere uma chave de segurança para o arquivo de configuração:
+ 
+ 
 
-```js
-adonis migration:run
-```
+    adonis key:generate
+
+ 6. Inicie o servidor:
+
+    adonis serve
