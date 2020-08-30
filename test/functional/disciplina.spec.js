@@ -11,7 +11,7 @@ trait("Test/ApiClient")
 
 
 
-test("disciplina pode ser apagada", async ({ assert, client }) => {
+test("Uma disciplina pode ser apagada", async ({ assert, client }) => {
   const disciplina = await Disciplina.create({
     nome: 'Português',
     curso_id: 1
@@ -23,7 +23,7 @@ test("disciplina pode ser apagada", async ({ assert, client }) => {
 
 });
 
-test("Disciplina pode ser criada", async ({ assert, client }) => {
+test("Uma disciplina pode ser criada", async ({ assert, client }) => {
   const disciplina = await Disciplina.create({
     nome: 'Matemática',
     curso_id: 1
@@ -38,7 +38,7 @@ test("Disciplina pode ser criada", async ({ assert, client }) => {
   response.assertStatus(201)
 });
 
-test("As diciplinas podem ser visualizadas", async ({ assert, client }) => {
+test("As disciplinas podem ser visualizadas", async ({ assert, client }) => {
   const disciplina = await Disciplina.create({
     nome: 'Matemática',
     curso_id: 1
@@ -49,7 +49,7 @@ test("As diciplinas podem ser visualizadas", async ({ assert, client }) => {
   response.assertStatus(200)
 });
 
-test("As diciplinas podem ser visualizadas", async ({ assert, client }) => {
+test("As disciplinas podem ser visualizadas", async ({ assert, client }) => {
   const disciplina = await Disciplina.create({
     nome: 'Matemática',
     curso_id: 1
@@ -60,7 +60,7 @@ test("As diciplinas podem ser visualizadas", async ({ assert, client }) => {
   response.assertStatus(200)
 });
 
-test("As diciplinas podem ser visualizadas", async ({ assert, client }) => {
+test("As disciplinas podem ser visualizadas", async ({ assert, client }) => {
   const disciplina = await Disciplina.create({
     nome: 'Matemática',
     curso_id: 1
