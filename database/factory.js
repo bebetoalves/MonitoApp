@@ -23,9 +23,9 @@ Factory.blueprint('App/Models/User', (faker) => {
   }
 })
 
-Factory.blueprint("App/Models/Disciplina", (faker, i, data = {}) => {
+Factory.blueprint("App/Models/Disciplina", (faker = {}) => {
   return {
     nome: faker.name(),
-    ...data
+    curso_id: '1',
   };
 });
