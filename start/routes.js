@@ -34,3 +34,9 @@ Route.group(() => {
     Route.delete('curso/:id', 'CursoController.destroy')
 
 }).prefix('api')
+
+Route.post('/disciplinas', 'DisciplinaController.store')
+Route.get('/disciplina/:id', 'DisciplinaController.show')
+Route.get('/disciplinas', 'DisciplinaController.index')
+Route.delete('/disciplina/:id', 'DisciplinaController.destroy')
+Route.put('/disciplina/:id', 'DisciplinaController.update')

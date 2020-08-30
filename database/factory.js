@@ -22,3 +22,10 @@ Factory.blueprint('App/Models/User', (faker) => {
     password: '12345678'
   }
 })
+
+Factory.blueprint("App/Models/Disciplina", (faker, i, data = {}) => {
+  return {
+    nome: faker.name(),
+    ...data
+  };
+});
