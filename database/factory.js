@@ -19,6 +19,14 @@ Factory.blueprint("App/Models/User", (faker) => {
     name: faker.name(),
     birthday: faker.date({ string: true, american: false }),
     email: faker.email(),
+    password: '12345678'
+  }
+})
+
+Factory.blueprint("App/Models/Disciplina", (faker = {}) => {
+  return {
+    nome: faker.name(),
+    curso_id: '1',
     password: "12345678",
   };
 });
