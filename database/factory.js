@@ -23,16 +23,19 @@ Factory.blueprint("App/Models/User", (faker) => {
   }
 })
 
-Factory.blueprint("App/Models/Disciplina", (faker = {}) => {
-  return {
-    nome: faker.name(),
-    curso_id: '1',
-    password: "12345678",
-  };
-});
-
 Factory.blueprint("App/Models/Curso", (faker) => {
   return {
     nome: faker.name(),
   };
 });
+
+Factory.blueprint("App/Models/Disciplina", (faker = {}) => {
+  return {
+    nome: faker.name(),
+    curso_id: async () => {
+      return (await Factory.model('App/Models/Curso').create()).id
+    },
+    password: "12345678",
+  };
+});
+
