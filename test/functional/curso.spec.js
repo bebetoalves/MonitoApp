@@ -7,6 +7,7 @@ trait("Test/ApiClient");
 test("curso pode ser criado", async ({ assert, client }) => {
   const { nome } = await Factory.model("App/Models/Curso").make();
   const response = await client.post("/api/cursos").send({ nome }).end();
+
   response.assertStatus(201);
   await Curso.query().where({ nome }).firstOrFail();
 });
@@ -30,7 +31,7 @@ test("um curso em específico pode ser visualizado", async ({
     nome,
   });
 
-  const response = await client.get("/api/curso/" + curso.id).end();
+  const response = await client.get("/api/cursos/" + curso.id).end();
 
   response.assertStatus(200);
 });
@@ -49,7 +50,7 @@ test("um curso pode ser modificado", async ({ assert, client }) => {
     nome: "Engenharia de Software"
   };
 
-  const response = await client.patch('/api/curso/' + curso.id)
+  const response = await client.patch('/api/cursos/' + curso.id)
   .send(novoCurso)
   .end();
 
@@ -64,7 +65,7 @@ test("um curso pode ser apagado", async ({ assert, client }) => {
     nome,
   });
 
-  const response = await client.delete("/api/curso/" + curso.id).end();
+  const response = await client.delete("/api/cursos/" + curso.id).end();
 
   response.assertStatus(200);
 
