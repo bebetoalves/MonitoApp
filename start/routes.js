@@ -30,6 +30,6 @@ Route.group(() => {
   Route.post("cursos", "CursoController.store");
   Route.get("cursos", "CursoController.index");
   Route.get("curso/:id", "CursoController.show");
-  Route.put("curso/:id", "CursoController.update");
+  Route.patch("curso/:id", "CursoController.update");
   Route.delete("curso/:id", "CursoController.destroy");
 }).prefix("api");
