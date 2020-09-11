@@ -19,24 +19,8 @@ const Route = use("Route");
 Route.on("/").render("welcome");
 
 Route.group(() => {
-  Route.get("user", "UserController.index");
-  Route.get("user/:id", "UserController.show");
-  Route.post("user", "UserController.store");
-  Route.patch("user/:id", "UserController.update");
-  Route.delete("user/:id", "UserController.destroy");
+
+  Route.resource('user', 'UserController');
+  Route.resource('cursos', 'UserController');
+  Route.resource('disciplina', 'UserController');
 }).prefix("api");
-
-Route.group(() => {
-  Route.post("cursos", "CursoController.store");
-  Route.get("cursos", "CursoController.index");
-  Route.get("curso/:id", "CursoController.show");
-  Route.patch("curso/:id", "CursoController.update");
-  Route.delete("curso/:id", "CursoController.destroy");
-}).prefix('api')
-
-Route.post('/disciplinas', 'DisciplinaController.store')
-Route.get('/disciplina/:id', 'DisciplinaController.show')
-Route.get('/disciplinas', 'DisciplinaController.index')
-Route.delete('/disciplina/:id', 'DisciplinaController.destroy')
-Route.put('/disciplina/:id', 'DisciplinaController.update')
-
