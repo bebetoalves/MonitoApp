@@ -11,7 +11,7 @@ trait('Test/ApiClient')
 test('um usuário pode ser criado', async ({ assert, client }) => {
   const { name, birthday, email, password } = await Factory.model('App/Models/User').make()
 
-  const response = await client.post('/api/user')
+  const response = await client.post('/api/usuarios')
     .send({ name, birthday, email, password })
     .end();
 
@@ -37,7 +37,7 @@ test('os usuários podem ser visualizados', async ({ assert, client }) => {
     name, birthday, email, password
   });
 
-  const response = await client.get('/api/user').end();
+  const response = await client.get('/api/usuarios').end();
 
   //Espera-se um retorno 200 (página existe)
   response.assertStatus(200);
@@ -55,7 +55,7 @@ test('um usuário pode ser visualizado', async({ assert, client }) => {
     name, birthday, email, password
   });
 
-  const response = await client.get('/api/user/' + user.id).end();
+  const response = await client.get('/api/usuarios/' + user.id).end();
 
   response.assertStatus(200);
   response.assertJSONSubset({ email: email });
@@ -77,7 +77,7 @@ test('um usuário pode ser atualizado', async ({ assert, client }) => {
     email: 'rafael@testando.com'
   };
 
-  const response = await client.patch('/api/user/' + user.id)
+  const response = await client.patch('/api/usuarios/' + user.id)
   .send(novosDados)
   .end();
 
@@ -94,7 +94,7 @@ test('um usuario pode ser apagado', async({ assert, client }) => {
 
   assert.equal(user.email, email);
 
-  const response = await client.delete('/api/user/' + user.id).end();
+  const response = await client.delete('/api/usuarios/' + user.id).end();
 
   response.assertStatus(200);
 
