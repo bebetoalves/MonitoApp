@@ -49,12 +49,12 @@ test("um curso pode ser modificado", async ({ assert, client }) => {
     nome: "Engenharia de Software"
   };
 
-  const response = await client.path('/api/curso/' + curso.id)
+  const response = await client.patch('/api/curso/' + curso.id)
   .send(novoCurso)
   .end();
 
   response.assertStatus(200);
-  response.assertJsonSubset(novoCurso);
+  response.assertJSONSubset(novoCurso);
 });
 
 test("um curso pode ser apagado", async ({ assert, client }) => {
