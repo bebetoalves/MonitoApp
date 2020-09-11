@@ -34,8 +34,7 @@ Factory.blueprint("App/Models/Disciplina", (faker = {}) => {
     nome: faker.name(),
     curso_id: async () => {
       return (await Factory.model('App/Models/Curso').create()).id
-    },
-    password: "12345678",
+    }
   };
 });
 
