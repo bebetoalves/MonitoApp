@@ -21,6 +21,6 @@ Route.on("/").render("welcome");
 Route.group(() => {
 
   Route.resource('usuarios', 'UserController');
-  Route.resource('cursos', 'UserController');
-  Route.resource('disciplinas', 'UserController');
+  Route.resource('cursos', 'CursoController');
+  Route.resource('disciplinas', 'DisciplinaController');
 }).prefix("api");
