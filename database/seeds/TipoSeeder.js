@@ -14,19 +14,19 @@
 const Factory = use('Factory')
 const Database = use('Database')
 
-const Type = use('App/Models/Type');
+const Tipo = use('App/Models/Tipo');
 
-class TypeSeeder {
+class TipoSeeder {
   async run() {
 
     const types = [
-      { title: 'Aluno' },
-      { title: 'Monitor' },
-      { title: 'Professor' }
+      { titulo: 'Aluno' },
+      { titulo: 'Monitor' },
+      { titulo: 'Professor' }
     ];
 
-    await Type.createMany(types);
+    await Tipo.createMany(types);
   }
 }
 
-module.exports = TypeSeeder
+module.exports = TipoSeeder

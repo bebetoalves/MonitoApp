@@ -13,10 +13,10 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use("Factory");
 
-class UserSeeder {
+class UsuarioSeeder {
   async run() {
-    await Factory.model("App/Models/User").createMany(10);
+    await Factory.model("App/Models/Usuario").createMany(10);
   }
 }
 
-module.exports = UserSeeder;
+module.exports = UsuarioSeeder;

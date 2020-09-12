@@ -20,7 +20,7 @@ Route.on("/").render("welcome");
 
 Route.group(() => {
 
-  Route.resource('usuarios', 'UserController');
+  Route.resource('usuarios', 'UsuarioController');
   Route.resource('cursos', 'CursoController');
   Route.resource('disciplinas', 'DisciplinaController');
 }).prefix("api");
