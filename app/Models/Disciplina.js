@@ -8,6 +8,10 @@ class Disciplina extends Model {
       return this.hasMany('App/Models/Curso');
   }
 
+  professor() {
+    return this.belongsToMany('App/Models/Usuario', 'disciplina_id', 'usuario_id', 'id', 'id')
+      .pivotTable('professor_disciplina');
+  }
 }
 
 module.exports = Disciplina
