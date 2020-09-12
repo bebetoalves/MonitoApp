@@ -7,7 +7,7 @@ const { validateAll } = use("Validator");
 class DisciplinaController {
 
   async store({ request, response }) {
-    try{
+    try {
       const errorMessage = {
         'nome.required': 'É obrigatório um nome para a Disciplina',
         'curso_id.required': 'É obrigatório um id do Curso'
@@ -21,7 +21,7 @@ class DisciplinaController {
         errorMessage
       )
 
-      if(validation.fails()){
+      if (validation.fails()) {
         return response.status(400).send({ message: validation.messages() });
       }
 
@@ -34,7 +34,7 @@ class DisciplinaController {
 
       return response.status(201).send(disciplina)
 
-    }catch (error){
+    } catch (error) {
       return response.status(500).send({ erro: `Erro: ${error.message}` });
     }
   }
@@ -42,10 +42,10 @@ class DisciplinaController {
 
 
   async destroy({ params, response }) {
-    try{
+    try {
       const disciplina = await Disciplina.query().where("id", params.id).first();
 
-      if(!disciplina){
+      if (!disciplina) {
         return response.status(400).send({ message: "Disciplina não existe" });
       }
 
@@ -60,18 +60,17 @@ class DisciplinaController {
 
 
 
-  async update({ params, request, response  }){
+  async update({ params, request, response }) {
     try {
-      const {nome} = request.only(['nome']);
+      const data = request.only(['nome', 'curso_id']);
 
-      const disciplina = await Disciplina.query().where("id", params.id).first();
+      const disciplina = await Disciplina.findOrFail(params.id);
 
-      if(!disciplina){
+      if (!disciplina) {
         return response.status(400).send({ message: "Disciplina não existe" });
       }
 
-      disciplina.nome = nome;
-      disciplina.id = params.id;
+      disciplina.merge(data);
 
       await disciplina.save();
 
@@ -85,11 +84,11 @@ class DisciplinaController {
 
 
 
-  async show({ params, response }){
+  async show({ params, response }) {
     try {
       const disciplina = await Disciplina.query().where("id", params.id).first();
 
-      if(!disciplina){
+      if (!disciplina) {
         return response.status(400).send({ message: "Disciplina não existe" });
       }
 
@@ -102,7 +101,7 @@ class DisciplinaController {
 
 
 
-  async index({ request, response }){
+  async index({ request, response }) {
     try {
       const disciplina = await Disciplina.all();
 
