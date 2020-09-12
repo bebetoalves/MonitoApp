@@ -19,8 +19,11 @@ const Route = use("Route");
 Route.on("/").render("welcome");
 
 Route.group(() => {
-
   Route.resource('usuarios', 'UsuarioController');
   Route.resource('cursos', 'CursoController');
   Route.resource('disciplinas', 'DisciplinaController');
+  Route.resource('noticias', 'NoticiaController')
+  .validator(new Map([
+    [['noticias.store'], ['Noticia']],
+  ]));
 }).prefix("api");
