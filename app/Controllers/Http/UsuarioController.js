@@ -1,9 +1,9 @@
 'use strict'
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const User = use('App/Models/User')
+const Usuario = use('App/Models/Usuario')
 
-class UserController {
+class UsuarioController {
   /**
      * Show a list of all types.
      * GET types
@@ -14,7 +14,7 @@ class UserController {
      * @param {View} ctx.view
      */
   async index({ request, response, view }) {
-    return await User.all();
+    return await Usuario.all();
   }
 
   /**
@@ -38,11 +38,11 @@ class UserController {
    * @param {Response} ctx.response
    */
   async store({ request, response }) {
-    const { name, birthday, email, password } = request.all();
+    const data = request.only(['nome', 'data_de_nascimento', 'email', 'senha']);
 
-    const user = await User.create({ name, birthday, email, password });
+    const usuario = await Usuario.create(data);
 
-    return response.ok({ user });
+    return response.ok({ usuario });
   }
 
   /**
@@ -55,9 +55,9 @@ class UserController {
    * @param {View} ctx.view
    */
   async show({ params, request, response, view }) {
-    const user = await User.findOrFail(params.id);
+    const usuario = await Usuario.findOrFail(params.id);
 
-    return response.ok(user);
+    return response.ok(usuario);
   }
 
   /**
@@ -81,13 +81,13 @@ class UserController {
    * @param {Response} ctx.response
    */
   async update({ params, request, response }) {
-    const user = await User.findOrFail(params.id);
-    const data = request.only(['name', 'birthday', 'email']);
+    const usuario = await Usuario.findOrFail(params.id);
+    const data = request.only(['nome', 'data_de_nascimento', 'email']);
 
-    user.merge(data);
-    await user.save();
+    usuario.merge(data);
+    await usuario.save();
 
-    return response.ok(user);
+    return response.ok(usuario);
   }
 
   /**
@@ -99,12 +99,12 @@ class UserController {
    * @param {Response} ctx.response
    */
   async destroy({ params, request, response }) {
-    const user = await User.findOrFail(params.id);
+    const usuario = await Usuario.findOrFail(params.id);
 
-    await user.delete();
+    await usuario.delete();
 
     return response.ok();
   }
 }
 
-module.exports = UserController
+module.exports = UsuarioController
