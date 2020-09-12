@@ -1,76 +1,70 @@
-const { test, trait } = use("Test/Suite")("Curso");
-const Curso = use("App/Models/Curso");
+const { test, trait } = use('Test/Suite')('Curso')
+
+/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
+const Curso = use('App/Models/Curso')
+
+/** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use("Factory");
 
-trait("Test/ApiClient");
+trait('Test/ApiClient')
+trait('DatabaseTransactions')
 
-test("curso pode ser criado", async ({ assert, client }) => {
+test("um curso pode ser criado", async ({ assert, client }) => {
   const { nome } = await Factory.model("App/Models/Curso").make();
-  const response = await client.post("/api/cursos").send({ nome }).end();
+
+  const response = await client.post("/api/cursos")
+    .send({ nome })
+    .end();
 
   response.assertStatus(201);
   await Curso.query().where({ nome }).firstOrFail();
 });
 
-test("o curso pode ser visualizado", async ({ assert, client }) => {
-  const { nome } = await Factory.model("App/Models/Curso").make();
-  await Curso.create({
-    nome,
-  });
+test("os cursos podem ser visualizados", async ({ assert, client }) => {
+  const curso = await Factory.model('App/Models/Curso').createMany(3);
+
+  const allCursos = await Curso.all();
+
   const response = await client.get("/api/cursos").end();
+
   response.assertStatus(200);
+  response.assertJSON(allCursos.toJSON());
 });
 
-test("um curso em específico pode ser visualizado", async ({
-  assert,
-  client,
-}) => {
-  const { nome } = await Factory.model("App/Models/Curso").make();
-
-  const curso = await Curso.create({
-    nome,
-  });
+test("um curso em específico pode ser visualizado", async ({ assert, client }) => {
+  const curso = await Factory.model('App/Models/Curso').create();
 
   const response = await client.get("/api/cursos/" + curso.id).end();
 
   response.assertStatus(200);
+  response.assertJSONSubset({
+    nome: curso.nome
+  });
 });
 
 test("um curso pode ser modificado", async ({ assert, client }) => {
-  const { nome } = await Factory.model("App/Models/Curso").make();
+  const curso = await Factory.model('App/Models/Curso').create();
 
-  const curso = await Curso.create({
-    nome,
-  });
-
-  //Verificar se o curso foi cadastrado
-  assert.equal(curso.nome, nome);
-
-  const novoCurso = {
-    nome: "Engenharia de Software"
+  const atualizacao = {
+    nome: 'Engenharia de Produção'
   };
 
   const response = await client.patch('/api/cursos/' + curso.id)
-  .send(novoCurso)
-  .end();
+    .send(atualizacao)
+    .end();
 
   response.assertStatus(200);
-  response.assertJSONSubset(novoCurso);
+  response.assertJSONSubset(atualizacao);
 });
 
 test("um curso pode ser apagado", async ({ assert, client }) => {
-  const { nome } = await Factory.model("App/Models/Curso").make();
-
-  const curso = await Curso.create({
-    nome,
-  });
+  const curso = await Factory.model('App/Models/Curso').create();
 
   const response = await client.delete("/api/cursos/" + curso.id).end();
 
   response.assertStatus(200);
 
   const findCurso = await Curso.find(curso.id);
-
   assert.isNull(findCurso);
 });
 
