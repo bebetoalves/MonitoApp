@@ -17,10 +17,14 @@ test("uma disciplina pode ser criada", async ({ assert, client }) => {
     .end()
 
   response.assertStatus(201);
+
+  response.assertJSONSubset({
+    disciplina: { nome, curso_id }
+  });
 });
 
 test("as disciplinas podem ser visualizadas", async ({ assert, client }) => {
-  const disciplinas = await Factory.model('App/Models/Disciplina').createMany(3);
+  const disciplinas = await Factory.model('App/Models/Disciplina').createMany(5);
 
   const allDisciplinas = await Disciplina.all();
 

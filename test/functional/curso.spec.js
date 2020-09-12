@@ -1,3 +1,5 @@
+'use strict';
+
 const { test, trait } = use('Test/Suite')('Curso')
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
@@ -21,7 +23,7 @@ test("um curso pode ser criado", async ({ assert, client }) => {
 });
 
 test("os cursos podem ser visualizados", async ({ assert, client }) => {
-  const curso = await Factory.model('App/Models/Curso').createMany(3);
+  const curso = await Factory.model('App/Models/Curso').createMany(5);
 
   const allCursos = await Curso.all();
 
