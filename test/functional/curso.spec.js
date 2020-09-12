@@ -42,11 +42,13 @@ test("um curso em específico pode ser visualizado", async ({ assert, client }) 
   });
 });
 
-test("um curso pode ser modificado", async ({ assert, client }) => {
+test("um curso pode ser atualizado", async ({ assert, client }) => {
   const curso = await Factory.model('App/Models/Curso').create();
 
   const atualizacao = {
-    nome: 'Engenharia de Produção'
+    nome: async () => {
+      return (await Factory.model('App/Models/Curso').make()).nome
+    }
   };
 
   const response = await client.patch('/api/cursos/' + curso.id)
