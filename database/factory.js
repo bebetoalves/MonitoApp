@@ -38,3 +38,9 @@ Factory.blueprint("App/Models/Disciplina", (faker = {}) => {
   };
 });
 
+Factory.blueprint("App/Models/Noticia", (faker = {}) => {
+  return {
+    monitoria_id: faker.integer({min: 1, max: 1}),
+    mensagem: faker.paragraph()
+  };
+});

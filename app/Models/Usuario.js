@@ -7,7 +7,7 @@ const Hash = use('Hash')
 const Model = use('Model')
 
 class Usuario extends Model {
-  static boot () {
+  static boot() {
     super.boot()
 
     /**
@@ -31,13 +31,18 @@ class Usuario extends Model {
    *
    * @return {Object}
    */
-  tokens () {
+  tokens() {
     return this.hasMany('App/Models/Token')
   }
 
   tipos() {
     return this.belongsToMany('App/Models/Tipo', 'usuario_id', 'tipo_id', 'id', 'id')
-               .pivotTable('usuario_tipo');
+      .pivotTable('usuario_tipo');
+  }
+
+  disciplinas() {
+    return this.belongsToMany('App/Models/Disciplinas', 'usuario_id', 'disciplina_id', 'id', 'id')
+      .pivotTable('professor_disciplina');
   }
 }
 
