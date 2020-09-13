@@ -1,6 +1,6 @@
 'use strict';
 
-const { test, trait } = use('Test/Suite')('Usuario')
+const { test, trait } = use('Test/Suite')('Usuario (Integração)')
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Usuario = use('App/Models/Usuario')

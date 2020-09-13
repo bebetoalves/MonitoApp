@@ -1,6 +1,6 @@
 'use strict'
 
-const { test } = use('Test/Suite')('Usuario (Testes unitários)');
+const { test } = use('Test/Suite')('Usuario (Unitário)');
 const { validate } = use('Validator')
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
@@ -8,7 +8,7 @@ const Factory = use("Factory");
 
 const UsuarioValidator = use('App/Validators/Usuario');
 
-test('o usuário deve informar um nome', async ({ assert }) => {
+test('um usuário deve informar um nome', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { nome: '' });
@@ -24,7 +24,7 @@ test('o usuário deve informar um nome', async ({ assert }) => {
   }]);
 });
 
-test('o usuário deve ter um nome composto apenas por letras', async ({ assert }) => {
+test('um usuário deve ter um nome composto apenas por letras', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { nome: '123 456 789' });
@@ -40,7 +40,7 @@ test('o usuário deve ter um nome composto apenas por letras', async ({ assert }
   }]);
 });
 
-test('o usuário deve ter um nome de no mínimo 5 caracteres', async ({ assert }) => {
+test('um usuário deve ter um nome de no mínimo 5 caracteres', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { nome: 'José' });
@@ -56,7 +56,7 @@ test('o usuário deve ter um nome de no mínimo 5 caracteres', async ({ assert }
   }]);
 });
 
-test('o usuario deve informar uma data de nascimento', async ({ assert }) => {
+test('um usuario deve informar uma data de nascimento', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { data_de_nascimento: '' });
@@ -72,7 +72,7 @@ test('o usuario deve informar uma data de nascimento', async ({ assert }) => {
   }]);
 });
 
-test('o usuário deve informar uma data de nascimento no formato DD/MM/AAAA', async ({ assert }) => {
+test('um usuário deve informar uma data de nascimento no formato DD/MM/AAAA', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { data_de_nascimento: '32/23/2000' });
@@ -88,7 +88,7 @@ test('o usuário deve informar uma data de nascimento no formato DD/MM/AAAA', as
   }]);
 });
 
-test('o usuário deve informar um e-mail', async ({ assert }) => {
+test('um usuário deve informar um e-mail', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { email: '' });
@@ -104,7 +104,7 @@ test('o usuário deve informar um e-mail', async ({ assert }) => {
   }]);
 });
 
-test('o usuário deve informar um e-mail válido', async ({ assert }) => {
+test('um usuário deve informar um e-mail válido', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { email: 'email inválido' });
@@ -120,7 +120,7 @@ test('o usuário deve informar um e-mail válido', async ({ assert }) => {
   }]);
 });
 
-test('o usuário deve ter um e-mail único', async ({ assert }) => {
+test('um usuário deve ter um e-mail único', async ({ assert }) => {
   const usuarioAleatorio = await Factory.model('App/Models/Usuario').create();
 
   const novoUsuario = await Factory.model('App/Models/Usuario').make();
@@ -138,7 +138,7 @@ test('o usuário deve ter um e-mail único', async ({ assert }) => {
   }]);
 });
 
-test('o usuário deve informar uma senha', async ({ assert }) => {
+test('um usuário deve informar uma senha', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { senha: '' });
@@ -154,7 +154,7 @@ test('o usuário deve informar uma senha', async ({ assert }) => {
   }]);
 });
 
-test('o usuário deve informar uma senha de no mínimo 6 caracteres', async ({ assert }) => {
+test('um usuário deve informar uma senha de no mínimo 6 caracteres', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { senha: '123' });
