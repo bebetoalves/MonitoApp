@@ -14,10 +14,12 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use("Factory");
 
+const Moment = use("moment");
+
 Factory.blueprint("App/Models/Usuario", (faker) => {
   return {
     nome: faker.name(),
-    data_de_nascimento: faker.date({ string: true, american: false }),
+    data_de_nascimento: Moment(faker.birthday({string: true, american: false}), 'DD/M/YYYY').format('DD/MM/YYYY'),
     email: faker.email(),
     senha: '12345678'
   }
