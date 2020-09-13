@@ -1,6 +1,6 @@
 'use strict'
 
-const { test } = use('Test/Suite')('Noticia');
+const { test } = use('Test/Suite')('Noticia (Unitário)');
 const { validate } = use('Validator')
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */

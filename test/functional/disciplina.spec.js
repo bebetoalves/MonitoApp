@@ -1,4 +1,6 @@
-const { test, trait } = use('Test/Suite')('Disciplina')
+'use strict';
+
+const { test, trait } = use('Test/Suite')('Disciplina (Integração)')
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Disciplina = use('App/Models/Disciplina')
@@ -19,7 +21,7 @@ test("uma disciplina pode ser criada", async ({ assert, client }) => {
   response.assertStatus(201);
 
   response.assertJSONSubset({
-    disciplina: { nome, curso_id }
+    nome, curso_id
   });
 });
 
