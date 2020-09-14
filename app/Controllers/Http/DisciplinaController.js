@@ -2,28 +2,12 @@
 
 const Curso = use('App/Models/Curso')
 const Disciplina = use('App/Models/Disciplina')
-const { validateAll } = use("Validator");
+
 
 class DisciplinaController {
 
   async store({ request, response }) {
     try {
-      const errorMessage = {
-        'nome.required': 'É obrigatório um nome para a Disciplina',
-        'curso_id.required': 'É obrigatório um id do Curso'
-      };
-
-      const validation = await validateAll(request.all(),
-        {
-          nome: 'required',
-          curso_id: 'required'
-        },
-        errorMessage
-      )
-
-      if (validation.fails()) {
-        return response.status(400).send({ message: validation.messages() });
-      }
 
       const data = request.only([
         'nome',
