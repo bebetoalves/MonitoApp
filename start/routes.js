@@ -21,7 +21,10 @@ Route.on("/").render("welcome");
 Route.group(() => {
   Route.resource('usuarios', 'UsuarioController');
   Route.resource('cursos', 'CursoController');
-  Route.resource('disciplinas', 'DisciplinaController');
+  Route.resource('disciplinas', 'DisciplinaController')
+  .validator(new Map([
+    [['disciplinas.store'], ['Disciplina']],
+  ]));
   Route.resource('noticias', 'NoticiaController')
   .validator(new Map([
     [['noticias.store'], ['Noticia']],
