@@ -1,27 +1,10 @@
 "use strict";
 
 const Curso = use("App/Models/Curso");
-const { validateAll } = use("Validator");
 
 class CursoController {
   async store({ request, response }) {
     try {
-      const errorMessage = {
-        "nome.required": "É obrigatório um nome para o Curso",
-      };
-
-      const validation = await validateAll(
-        request.all(),
-        {
-          nome: "required",
-        },
-        errorMessage
-      );
-
-      if (validation.fails()) {
-        return response.status(400).send({ message: validation.messages() });
-      }
-
       const data = request.only(["nome"]);
 
       const curso = await Curso.create(data);
