@@ -52,7 +52,7 @@ test("as disciplinas podem ser visualizadas", async ({ assert, client }) => {
   response.assertJSON(allDisciplinas.toJSON());
 });
 
-test("uma disciplina em específico pode ser visualizada", async ({ assert, client }) => {
+test("uma disciplina específica pode ser visualizada", async ({ assert, client }) => {
   const disciplina = await Factory.model('App/Models/Disciplina').create();
 
   const response = await client.get('/api/disciplinas/' + disciplina.id).end()

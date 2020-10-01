@@ -4,15 +4,15 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-const Noticia = use('App/Models/Noticia');
+const Monitoria = use('App/Models/Monitoria');
 
 /**
- * Resourceful controller for interacting with noticias
+ * Resourceful controller for interacting with monitorias
  */
-class NoticiaController {
+class MonitoriaController {
   /**
-   * Show a list of all noticias.
-   * GET noticias
+   * Show a list of all monitorias.
+   * GET monitorias
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -20,12 +20,12 @@ class NoticiaController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    return await Noticia.all();
+    return await Monitoria.all();
   }
 
   /**
-   * Render a form to be used for creating a new noticia.
-   * GET noticias/create
+   * Render a form to be used for creating a new monitoria.
+   * GET monitorias/create
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -36,24 +36,24 @@ class NoticiaController {
   }
 
   /**
-   * Create/save a new noticia.
-   * POST noticias
+   * Create/save a new monitoria.
+   * POST monitorias
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
-    const data = request.only(['monitoria_id', 'mensagem']);
+    const data = request.only(['disciplina_id', 'usuario_id', 'horario', 'local']);
 
-    const noticia = await Noticia.create(data);
+    const monitoria = await Monitoria.create(data);
 
-    return response.ok({ noticia });
+    return response.ok({ monitoria });
   }
 
   /**
-   * Display a single noticia.
-   * GET noticias/:id
+   * Display a single monitoria.
+   * GET monitorias/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -61,14 +61,14 @@ class NoticiaController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-    const noticia = await Noticia.findOrFail(params.id);
+    const monitoria = await Monitoria.findOrFail(params.id);
 
-    return response.ok(noticia);
+    return response.ok(monitoria);
   }
 
   /**
-   * Render a form to update an existing noticia.
-   * GET noticias/:id/edit
+   * Render a form to update an existing monitoria.
+   * GET monitorias/:id/edit
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -79,38 +79,38 @@ class NoticiaController {
   }
 
   /**
-   * Update noticia details.
-   * PUT or PATCH noticias/:id
+   * Update monitoria details.
+   * PUT or PATCH monitorias/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
-    const noticia = await Noticia.findOrFail(params.id);
-    const data = request.only(['monitoria_id', 'mensagem']);
+    const monitoria = await Monitoria.findOrFail(params.id);
+    const data = request.only(['disciplina_id', 'usuario_id', 'horario', 'local']);
 
-    noticia.merge(data);
-    await noticia.save();
+    monitoria.merge(data);
+    await monitoria.save();
 
-    return response.ok(noticia);
+    return response.ok(monitoria);
   }
 
   /**
-   * Delete a noticia with id.
-   * DELETE noticias/:id
+   * Delete a monitoria with id.
+   * DELETE monitorias/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
-    const noticia = await Noticia.findOrFail(params.id);
+    const monitoria = await Monitoria.findOrFail(params.id);
 
-    await noticia.delete();
+    await monitoria.delete();
 
     return response.ok();
   }
 }
 
-module.exports = NoticiaController
+module.exports = MonitoriaController

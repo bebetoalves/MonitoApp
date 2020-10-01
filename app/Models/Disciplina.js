@@ -4,13 +4,17 @@
 const Model = use('Model')
 
 class Disciplina extends Model {
-  cursos(){
-      return this.hasMany('App/Models/Curso');
+  cursos() {
+    return this.hasMany('App/Models/Curso');
   }
 
   professor() {
     return this.belongsToMany('App/Models/Usuario', 'disciplina_id', 'usuario_id', 'id', 'id')
       .pivotTable('professor_disciplina');
+  }
+
+  monitoria() {
+    return this.belongsTo('App/Models/Monitoria')
   }
 }
 

@@ -33,7 +33,7 @@ test("os cursos podem ser visualizados", async ({ assert, client }) => {
   response.assertJSON(allCursos.toJSON());
 });
 
-test("um curso em específico pode ser visualizado", async ({ assert, client }) => {
+test("um curso específico pode ser visualizado", async ({ assert, client }) => {
   const curso = await Factory.model('App/Models/Curso').create();
 
   const response = await client.get("/api/cursos/" + curso.id).end();
@@ -71,15 +71,3 @@ test("um curso pode ser apagado", async ({ assert, client }) => {
   const findCurso = await Curso.find(curso.id);
   assert.isNull(findCurso);
 });
-
-// test("curso não pode ser criado sem nome", async ({ assert, client }) => {
-//   const { nome } = await Factory.model("App/Models/Curso").make();
-
-//   const novoNome = {
-//     nome: "",
-//   };
-
-//   const response = await client.post("/api/cursos").send(novoNome).end();
-
-//   response.assertStatus(400);
-// });

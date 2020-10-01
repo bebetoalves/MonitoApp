@@ -36,7 +36,7 @@ test('os usuários podem ser visualizados', async ({ assert, client }) => {
   response.assertJSON(allUsuarios.toJSON());
 });
 
-test('um usuário em específico pode ser visualizado', async ({ assert, client }) => {
+test('um usuário específico pode ser visualizado', async ({ assert, client }) => {
   const usuario = await Factory.model('App/Models/Usuario').create();
 
   const response = await client.get('/api/usuarios/' + usuario.id).end();

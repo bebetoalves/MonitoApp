@@ -36,7 +36,7 @@ test('as noticias podem ser visualizadas', async ({ assert, client }) => {
   response.assertJSONSubset(allNoticias.toJSON());
 });
 
-test('uma noticia em especifico pode ser visualizada', async ({ assert, client }) => {
+test('uma noticia especifica pode ser visualizada', async ({ assert, client }) => {
   const noticia = await Factory.model('App/Models/Noticia').create();
 
   const response = await client.get("/api/noticias/" + noticia.id).end();

@@ -22,11 +22,15 @@ Route.group(() => {
   Route.resource('usuarios', 'UsuarioController');
   Route.resource('cursos', 'CursoController');
   Route.resource('disciplinas', 'DisciplinaController')
-  .validator(new Map([
-    [['disciplinas.store'], ['Disciplina']],
-  ]));
+    .validator(new Map([
+      [['disciplinas.store'], ['Disciplina']],
+    ]));
   Route.resource('noticias', 'NoticiaController')
-  .validator(new Map([
-    [['noticias.store'], ['Noticia']],
-  ]));
+    .validator(new Map([
+      [['noticias.store'], ['Noticia']],
+    ]));
+  Route.resource('monitorias', 'MonitoriaController')
+    .validator(new Map([
+      [['monitorias.store'], ['Monitoria']],
+    ]));
 }).prefix("api");
