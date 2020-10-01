@@ -4,13 +4,15 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const Monitoria = use('App/Models/Monitoria');
+
 /**
- * Resourceful controller for interacting with types
+ * Resourceful controller for interacting with monitorias
  */
-class TypeController {
+class MonitoriaController {
   /**
-   * Show a list of all types.
-   * GET types
+   * Show a list of all monitorias.
+   * GET monitorias
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -18,11 +20,12 @@ class TypeController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    return await Monitoria.all();
   }
 
   /**
-   * Render a form to be used for creating a new type.
-   * GET types/create
+   * Render a form to be used for creating a new monitoria.
+   * GET monitorias/create
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -33,19 +36,24 @@ class TypeController {
   }
 
   /**
-   * Create/save a new type.
-   * POST types
+   * Create/save a new monitoria.
+   * POST monitorias
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
+    const data = request.only(['disciplina_id', 'usuario_id', 'horario', 'local']);
+
+    const monitoria = await Monitoria.create(data);
+
+    return response.ok({ monitoria });
   }
 
   /**
-   * Display a single type.
-   * GET types/:id
+   * Display a single monitoria.
+   * GET monitorias/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -53,11 +61,14 @@ class TypeController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+    const monitoria = await Monitoria.findOrFail(params.id);
+
+    return response.ok(monitoria);
   }
 
   /**
-   * Render a form to update an existing type.
-   * GET types/:id/edit
+   * Render a form to update an existing monitoria.
+   * GET monitorias/:id/edit
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -68,26 +79,38 @@ class TypeController {
   }
 
   /**
-   * Update type details.
-   * PUT or PATCH types/:id
+   * Update monitoria details.
+   * PUT or PATCH monitorias/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+    const monitoria = await Monitoria.findOrFail(params.id);
+    const data = request.only(['disciplina_id', 'usuario_id', 'horario', 'local']);
+
+    monitoria.merge(data);
+    await monitoria.save();
+
+    return response.ok(monitoria);
   }
 
   /**
-   * Delete a type with id.
-   * DELETE types/:id
+   * Delete a monitoria with id.
+   * DELETE monitorias/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    const monitoria = await Monitoria.findOrFail(params.id);
+
+    await monitoria.delete();
+
+    return response.ok();
   }
 }
 
-module.exports = TypeController
+module.exports = MonitoriaController

@@ -46,3 +46,12 @@ Factory.blueprint("App/Models/Noticia", (faker = {}) => {
     mensagem: faker.paragraph()
   };
 });
+
+Factory.blueprint("App/Models/Monitoria", (faker = {}) => {
+  return {
+    disciplina_id: faker.integer({min: 1, max: 1}),
+    usuario_id: faker.integer({min: 1, max: 1}),
+    horario: faker.name(),
+    local: faker.city()
+  };
+});

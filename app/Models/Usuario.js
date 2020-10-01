@@ -44,6 +44,10 @@ class Usuario extends Model {
     return this.belongsToMany('App/Models/Disciplinas', 'usuario_id', 'disciplina_id', 'id', 'id')
       .pivotTable('professor_disciplina');
   }
+
+  monitoria() {
+    return this.belongsTo('App/Models/Monitoria');
+  }
 }
 
 module.exports = Usuario
