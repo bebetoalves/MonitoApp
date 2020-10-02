@@ -1,6 +1,6 @@
 'use strict'
 
-const { test } = use('Test/Suite')('Usuario (Unitário)');
+const { test } = use('Test/Suite')('Usuario (Unidade)');
 const { validate } = use('Validator')
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
