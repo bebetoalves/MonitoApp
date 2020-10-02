@@ -8,7 +8,7 @@ const Factory = use("Factory");
 
 const UsuarioValidator = use('App/Validators/Usuario');
 
-test('um usuário deve informar um nome', async ({ assert }) => {
+test('um usuário deve informar um nome completo', async ({ assert }) => {
   const usuario = await Factory.model('App/Models/Usuario').make();
 
   const data = Object.assign(usuario.toJSON(), { nome: '' });
