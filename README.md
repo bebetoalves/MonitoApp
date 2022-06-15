@@ -1,27 +1,55 @@
-# Como instalar
+<h1  align="center">Simple Academic Monitoring API</h1>
+<h4  align="center">This project was a challenge proposed in the Verification and Validation discipline at the Federal University of Ceará.</h4>
+<p  align="center">
+    <a  href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a  href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;
+</p>
 
- 1. Instale o Node na sua maquina. (https://nodejs.org/en/download/)
- 
- 2. Após a instalação do Node, instale o Adonis-CLI (pule este passo se já estiver instalado).
-		
+## :rocket: Technologies
 
-    npm i -g @adonisjs/cli
+In this Node application, we created an API to organize academic tutoring on a campus. 
 
- 3. Clone este repositório e instale as dependências do node:
+- [Adonis.js](https://adonisjs.com/)
+- [Moment.js](https://momentjs.com/)
 
-    npm install
+## :information_source: How To Use
 
- 4. Gere o arquivo de configuração do Adonis:
+To run this project, you need to clone this repository and follow the steps below:
 
+```bash
+# Clone this repository
 
-    cp .env.example .env
+$ git clone https://github.com/bebetoalves/simple-academic-monitoring-api
 
- 5. Gere uma chave de segurança para o arquivo de configuração:
- 
- 
+# Go into the repository
 
-    adonis key:generate
+$ cd simple-academic-monitoring-api
 
- 6. Inicie o servidor:
+# Install Adonis CLI
 
-    adonis serve
+$ npm i -g @adonisjs/cli
+
+# Generate config file
+
+$ cp .env.example .env
+
+# Install packages
+
+$ yarn install or npm install
+
+# Generate Adonis Key
+
+$ adonis key:generate
+
+# Run tests
+
+$ node ace test
+
+# Run
+
+$ adonis serve
+```
+
+---
+
+Made with :coffee: by Bebeto Alves
